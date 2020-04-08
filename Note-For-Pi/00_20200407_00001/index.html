@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>安装系统和配置 - 湖广午王的个人笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5b89\u88c5\u7cfb\u7edf\u548c\u914d\u7f6e";
+    var mkdocs_page_input_path = "Note-For-Pi/00_20200407_00001.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 湖广午王的个人笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页闲话</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Note-For-Pi</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../">关于</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">安装系统和配置</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_20200408_00002/">搭建简易博客系统</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">湖广午王的个人笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Note-For-Pi &raquo;</li>
+        
+      
+    
+    <li>安装系统和配置</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>我手上有两个盒子，一个是NanoPi-K2，一个是树莓派4B。相对来说树莓派4B的玩家肯定多很多，不过如果不使用它们的硬件特性的话，其实都差不多，吃的灰不见得谁比谁少。相对来说，NanoPi-K2在我手上吃灰的年限更长一些，所以还是先用NanoPi-K2吧，树莓派留着玩硬件，NanoPi-K2用来玩软件。</p>
+<h4 id="_1">下载系统镜像</h4>
+<p>NanoPi-K2官方在Wiki上给的系统是Ubuntu-Core和Android，我觉得Armbian还是好用一些，所以还是用Armbian吧。正好<a href="https://www.armbian.com/">Armbian官网</a>也能找到NanoPi-K2的系统。Armbian是轻量级的Debian系统，是专门为ARM开发板发行和重新编译的Debian系统，而Ubuntu也是派生自Debian，确认过眼神，是一系的Linux，所以使用起来都差不多。</p>
+<p><a href="https://www.armbian.com/nanopi-k2/">NanoPi-K2的下载地址</a>，页面上有两个镜像，分别是Armbian Buster和Armbian Bionic。Buster是Debian 10的代号，Bionic是Ubuntu 18.04的代号。所以我选Buster镜像，因为它小一些。</p>
+<h4 id="_2">写入镜像</h4>
+<p>下载镜像后，得到一个zip文件，解压出里面的img镜像，不放心的话可以校验下md5，保证img是完好的。然后写入得到SD卡上。Windows下可以用<a href="https://win32diskimager.download/">Win32DiskImager</a>来写入，识别到SD卡后，选择Image文件，点Write坐等完成就行。
+Linux下就更简单了，直接用dd命令来写入镜像到指定SD卡就行：</p>
+<pre><code>sudo dd if=your_img_path.img of=/dev/your_sd_card bs=4M
+</code></pre>
+
+<h4 id="_3">基础配置</h4>
+<p>写好sd卡后，插入到盒子上，然后通过路由器连接有线网络，上电启动。不出意外的话，就可以通过路由器的管理页面看到nanopik2的设备在线了，记下它的局域网ip。使用ssh来登录设备。windows下可以下载putty来连接ssh，linux直接使用ssh命令来登录，默认端口是22，可以加可以不加：</p>
+<pre><code>ssh yourip(for example: 192.168.1.110)
+</code></pre>
+
+<p>armbian root密码默认为1234，登录后会要求修改密码。另外会要求增加用户和用户组，可以直接跳过。</p>
+<p>连接成功后，第一件事就是来个命令感受以下了，需要一个非常有哲理的命令来体现逼格：</p>
+<pre><code>whoami
+</code></pre>
+
+<p>恩，其实没什么卵用。正确的姿势应该是：</p>
+<pre><code># 同步/etc/apt/sources.list和/etc/apt/sources.list.d中列出的源的索引，保证获取到最新的软件包
+sudo apt-get update
+
+# 升级已安装的所有软件包
+sudo apt-get upgrade
+
+# 安装armbian配置工具
+sudo apt-get install armbian-config
+</code></pre>
+
+<p>通过以上命令，安装<code>armbian-config</code>成功后，就可以方便的去配置盒子了。
+最重要的当然是把Wifi给配置起来：</p>
+<pre><code class="bash">sudo armbian-config
+</code></pre>
+
+<p>键入以上命令后，会在命令行窗口打开armbian-config控制面板:
+<img alt="armbian-config" src="picture/armbian-config.png" /></p>
+<p>选择Network-WiFi，然后选择需要连接的WiFi，输入密码连接即可。下次armbian重启会自动连接这个WiFi。</p>
+<p>在armbian-config的配置面板上还有很多其他选项，比如Network界面的，IR(红外模块)、BT(蓝牙模块)等，可以也一起安装上，万一哪天用到了呢。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../00_20200408_00002/" class="btn btn-neutral float-right" title="搭建简易博客系统">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../" class="btn btn-neutral" title="关于"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../00_20200408_00002/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

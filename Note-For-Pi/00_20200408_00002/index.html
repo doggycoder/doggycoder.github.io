@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>搭建简易博客系统 - 湖广午王的个人笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u642d\u5efa\u7b80\u6613\u535a\u5ba2\u7cfb\u7edf";
+    var mkdocs_page_input_path = "Note-For-Pi/00_20200408_00002.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 湖广午王的个人笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页闲话</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Note-For-Pi</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../">关于</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_20200407_00001/">安装系统和配置</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">搭建简易博客系统</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">湖广午王的个人笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Note-For-Pi &raquo;</li>
+        
+      
+    
+    <li>搭建简易博客系统</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>安装好系统，进行了基础的配置后，最重要的事情就是准备个博客系统，用来做好笔记，记录折腾的历史。避免下次吃灰后，又要重新折腾了。</p>
+<h3 id="_1">选择一个博客系统</h3>
+<p>下载armbian的时候，点开了armbian的Document，看起来很眼熟，貌似很多开源项目的说明文档都是用这种样式的，看起来非常简洁和清晰，翻到最下面，看到了有这样的一行字，直接就为我选择博客系统指明了方向。</p>
+<pre><code>Built with MkDocs using a theme provided by Read the Docs.
+</code></pre>
+
+<p>没错了，就是它了，<a href="https://mkdocs.readthedocs.io/en/stable/">MkDocs</a>，主题用readthedocs提供的主题。根据其描述：</p>
+<blockquote>
+<p><u>MkDocs 是一个用于创建项目文档的 快速, 简单 , 完美华丽 的静态站点生成器. 文档源码使用 Markdown 来撰写, 用一个 YAML 文件作为配置文档.</u></p>
+</blockquote>
+<h3 id="mkdocs">安装mkdocs</h3>
+<p>根据官方文档的说明，mkdocs的安装相当简单：</p>
+<pre><code class="bash">sudo pip install mkdocs
+</code></pre>
+
+<p>所以，我们得先安装个pip，全部命令为：</p>
+<pre><code class="bash"># 安装python2
+sudo apt-get install python
+
+# 安装pip
+sudo apt-get install python-pip
+
+# 安装mkdocs
+sudo pip install mkdocs
+</code></pre>
+
+<p>理想状况下，应该是一气呵成的。不过意外时有发生，我在安装python的时候出现以下问题：</p>
+<pre><code class="bash">Setting up lirc (0.10.1-5.2) ...
+Job for lircd.service failed because a fatal signal was delivered to the control process.
+See &quot;systemctl status lircd.service&quot; and &quot;journalctl -xe&quot; for details.
+invoke-rc.d: initscript lircd, action &quot;start&quot; failed.
+● lircd.service - Flexible IR remote input/output application support
+   Loaded: loaded (]8;;file://nanopik2/lib/systemd/system/lircd.service/lib/systemd/system/lircd.service]8;;; disabled; vendor preset: enabled)
+   Active: failed (Result: signal) since Tue 2020-04-07 15:22:49 UTC; 57ms ago
+     Docs: ]8;;man:lircd(8)man:lircd(8)]8;;
+           ]8;;http://lirc.org/html/configure.htmlhttp://lirc.org/html/configure.html]8;;
+  Process: 7528 ExecStart=/usr/sbin/lircd --nodaemon (code=killed, signal=SEGV)
+ Main PID: 7528 (code=killed, signal=SEGV)
+
+Apr 07 15:22:48 nanopik2 systemd[1]: Starting Flexible IR remote input/output application support...
+Apr 07 15:22:49 nanopik2 lircd[7528]: Warning: cannot open /etc/lirc/lirc_options.conf
+Apr 07 15:22:49 nanopik2 lircd-0.10.1[7528]: Info: lircd:  Opening log, level: Info
+Apr 07 15:22:49 nanopik2 lircd-0.10.1[7528]: Notice: Version: lircd 0.10.1
+Apr 07 15:22:49 nanopik2 lircd-0.10.1[7528]: Notice: System info: Linux nanopik2 5.4.28-meson64 #20.02.8 SMP PREEMPT Mon Mar 30 09:12:52 CEST 2020 aarch64 GNU/Linux
+Apr 07 15:22:49 nanopik2 systemd[1]: lircd.service: Main process exited, code=killed, status=11/SEGV
+Apr 07 15:22:49 nanopik2 systemd[1]: lircd.service: Failed with result 'signal'.
+Apr 07 15:22:49 nanopik2 systemd[1]: Failed to start Flexible IR remote input/output application support.
+dpkg: error processing package lirc (--configure):
+ installed lirc package post-installation script subprocess returned error exit status 1
+Errors were encountered while processing:
+ lirc
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+</code></pre>
+
+<p>虽然python安装成功了，但是报错看着着实讨厌，看起来是我前面配置的红外模块有问题。问了下度娘得到了答案：</p>
+<pre><code class="bash">sudo cp /etc/lirc/lirc_options.conf.dist /etc/lirc/lirc_options.conf
+sudo apt-get install lirc
+</code></pre>
+
+<p>另外安装mkdocs时也出现了报错：</p>
+<pre><code class="bash">DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Collecting mkdocs
+  Using cached mkdocs-1.0.4-py2.py3-none-any.whl (1.2 MB)
+Collecting Jinja2&gt;=2.7.1
+  Using cached Jinja2-2.11.1-py2.py3-none-any.whl (126 kB)
+Collecting click&gt;=3.3
+  Using cached click-7.1.1-py2.py3-none-any.whl (82 kB)
+Collecting tornado&gt;=5.0
+  Using cached tornado-5.1.1.tar.gz (516 kB)
+    ERROR: Command errored out with exit status 1:
+     command: /usr/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '&quot;'&quot;'/tmp/pip-install-6Z1fLn/tornado/setup.py'&quot;'&quot;'; __file__='&quot;'&quot;'/tmp/pip-install-6Z1fLn/tornado/setup.py'&quot;'&quot;';f=getattr(tokenize, '&quot;'&quot;'open'&quot;'&quot;', open)(__file__);code=f.read().replace('&quot;'&quot;'\r\n'&quot;'&quot;', '&quot;'&quot;'\n'&quot;'&quot;');f.close();exec(compile(code, __file__, '&quot;'&quot;'exec'&quot;'&quot;'))' egg_info --egg-base /tmp/pip-install-6Z1fLn/tornado/pip-egg-info
+         cwd: /tmp/pip-install-6Z1fLn/tornado/
+    Complete output (3 lines):
+    Traceback (most recent call last):
+      File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+    ImportError: No module named setuptools
+    ----------------------------------------
+ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+</code></pre>
+
+<p>这个看起来颇熟悉，直接升级pipsetuptools和就搞定了：</p>
+<pre><code class="bash">sudo pip install --upgrade pip
+sudo pip install --upgrade setuptools
+</code></pre>
+
+<p>升级后，再安装mkdocs，畅通无阻。</p>
+<h3 id="mkdocs_1">mkdocs使用</h3>
+<p>mkdocs的使用比较简单，直接安装后直接按照它的文档使用就行，这里也有个<a href="https://markdown-docs-zh.readthedocs.io/zh_CN/latest/#mkdocs">中文文档地址</a>。总结以下，主要步骤为：</p>
+<ol>
+<li><code>mkdocs new my-project</code>命令创建一个文档项目</li>
+<li>在my-project/docs编辑文档，可以新建markdown文件，也可以嵌套文件夹</li>
+<li><code>mkdocs serve</code>命令启动博客站点，在浏览器就可以看到本地站点了。路径为 http://127.0.0.1:8000/</li>
+</ol>
+<p>目录是自动生成的，如果想自定义目录、theme、名字啥的，在my-project中的mkdocs.yml中修改即可，具体项官网解释比较清楚了，写这篇博客时，本站示例如下：</p>
+<pre><code class="yml">site_name: 湖广午王的个人笔记
+theme: readthedocs
+pages:
+- 首页闲话 : 'index.md'
+- Note-For-Pi : 
+  - 关于 : 'Note-For-Pi/index.md'
+  - 安装系统和配置 : Note-For-Pi/00_20200407_00001.md
+  - 搭建简易博客系统 : Note-For-Pi/00_20200408_00002.md
+</code></pre>
+
+<h3 id="gitpage">同步到gitpage</h3>
+<p>独乐乐不如众乐乐，所以发布到公网还是很有必要的。深受广大程序猿喜爱的py交友网站github所提供的gitpage自然是首选了。</p>
+<p>为了交友方便，先安装个git再说：</p>
+<pre><code>sudo apt-get install git
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../00_20200407_00001/" class="btn btn-neutral" title="安装系统和配置"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../00_20200407_00001/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
