@@ -98,7 +98,7 @@
           <div role="main">
             <div class="section">
               
-                <p>安装好系统，进行了基础的配置后，最重要的事情就是准备个博客系统，用来做好笔记，记录折腾的历史。避免下次吃灰后，又要重新折腾了。</p>
+                <p>给小盒子安装好系统，进行了基础的配置后，最重要的事情就是准备个博客系统，用来做好笔记，记录折腾的历史。避免下次吃灰后，又要重新折腾了。</p>
 <h3 id="_1">选择一个博客系统</h3>
 <p>下载armbian的时候，点开了armbian的Document，看起来很眼熟，貌似很多开源项目的说明文档都是用这种样式的，看起来非常简洁和清晰，翻到最下面，看到了有这样的一行字，直接就为我选择博客系统指明了方向。</p>
 <pre><code>Built with MkDocs using a theme provided by Read the Docs.
@@ -191,6 +191,7 @@ sudo pip install --upgrade setuptools
 <li><code>mkdocs new my-project</code>命令创建一个文档项目</li>
 <li>在my-project/docs编辑文档，可以新建markdown文件，也可以嵌套文件夹</li>
 <li><code>mkdocs serve</code>命令启动博客站点，在浏览器就可以看到本地站点了。路径为 http://127.0.0.1:8000/</li>
+<li><code>mkdocs build</code>构建静态站，发布到想要发布的地方</li>
 </ol>
 <p>目录是自动生成的，如果想自定义目录、theme、名字啥的，在my-project中的mkdocs.yml中修改即可，具体项官网解释比较清楚了，写这篇博客时，本站示例如下：</p>
 <pre><code class="yml">site_name: 湖广午王的个人笔记
@@ -204,10 +205,26 @@ pages:
 </code></pre>
 
 <h3 id="gitpage">同步到gitpage</h3>
-<p>独乐乐不如众乐乐，所以发布到公网还是很有必要的。深受广大程序猿喜爱的py交友网站github所提供的gitpage自然是首选了。</p>
-<p>为了交友方便，先安装个git再说：</p>
+<p>独乐乐不如众乐乐，所以发布到公网还是很有必要的。深受广大程序猿喜爱的py交友网站github所提供的<a href="https://pages.github.com/">gitpage</a>自然是首选了。
+首先自然是申请一个github账号（如果没有的话），然后按照gitpage的指引创建个人站点。</p>
+<p>为了交友方便，上传刚刚生成的静态站内容，肯定得先安装个git再说：</p>
 <pre><code>sudo apt-get install git
 </code></pre>
+
+<p>然后进入到前面博客目录build后生成的site目录，执行命令以下命令来将内容同步到创建的项目中：</p>
+<pre><code class="bash"># 初始化本地git仓库
+git init
+# 将文件夹下所有内容加入仓库
+git add .
+# 提交上面加入的内容
+git commit -m &quot;first commit&quot;
+# 设置远程仓库
+git remote add origin https://github.com/yourname/yourproject.git
+# 推送到远程仓库
+git push -u origin master --force
+</code></pre>
+
+<p>这样，博客系统就搞完了。小盒子一脸懵逼，好像没我啥事？强行加戏，安装Apache+PHP？还是算了，再想个业务场景吧。</p>
               
             </div>
           </div>
